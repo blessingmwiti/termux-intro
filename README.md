@@ -8,3 +8,5 @@ Give permissions by typing chmod +x intro.sh
 Run the bash script ./intro.sh
 You'll be asked to enter a name, type in you cool name. And click enter.
 Exit then restart Termux to see the new welcome message. Enjoy!
+
+YouTube video on installation, https://youtu.be/Zs32r4084uU
