@@ -33,9 +33,10 @@ read name
 generate_welcome_banner "$name"
 
 # Install the necessary packages for the script to work (if not already installed)
-pkg install neofetch --yes
-pkg install figlet --yes
-pkg install lolcat --yes  # For colorful output
+apt update -y && apt upgrade -y
+apt install neofetch --yes
+apt install figlet --yes
+apt install lolcat --yes  # For colorful output
 
 # Remove any existing MOTD files to avoid conflicts
 rm -f /data/data/com.termux/files/usr/etc/motd
