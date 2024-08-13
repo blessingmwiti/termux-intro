@@ -31,6 +31,8 @@ gem install lolcat
 #     neofetch --ascii_distro termux --colors 4 6 2 3 5 7
 # }
 
+clear
+
 # Prompt the user for their name
 echo "Enter your name:"
 read name
@@ -45,7 +47,7 @@ echo "********************************************"
 echo "  WELCOME TO TERMUX, $name! 🌟"
 echo "********************************************"
 echo -e "${RESET}"
-animate_text "$name" "figlet" "$BOLD$MAGENTA" "$BOLD$CYAN"
+name=$name; BOLD=$(tput bold); MAGENTA=$(tput setaf 5); CYAN=$(tput setaf 6); echo -e "${BOLD}${MAGENTA}$(figlet $name)${CYAN}"
 neofetch --ascii_distro termux --colors 4 6 2 3 5 7
 " > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
 
