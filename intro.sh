@@ -7,43 +7,46 @@ source /data/data/com.termux/files/usr/etc/bash_animations.sh
 apt update -y && apt upgrade -y
 apt install neofetch --yes
 apt install figlet --yes
-apt install lolcat --yes
+apt install ruby --yes
+gem install lolcat
 
 # Function to generate a dynamic and colorful welcome banner
-generate_welcome_banner() {
-    local name=$1
+# generate_welcome_banner() {
+#     local name=$1
 
-    # Clear the screen
-    clear
+#     # Clear the screen
+#     clear
 
-    # Display a colorful ASCII banner with dynamic colors and animations
-    echo -e "${BOLD}${CYAN}"
-    echo "********************************************"
-    echo "  WELCOME TO TERMUX, $name! 🌟"
-    echo "********************************************"
-    echo -e "${RESET}"
+#     # Display a colorful ASCII banner with dynamic colors and animations
+#     echo -e "${BOLD}${CYAN}"
+#     echo "********************************************"
+#     echo "  WELCOME TO TERMUX, $name! 🌟"
+#     echo "********************************************"
+#     echo -e "${RESET}"
 
-    # Animate the user's name with a cool color-changing effect
-    animate_text "$name" "figlet" "$BOLD$MAGENTA" "$BOLD$CYAN"
+#     # Animate the user's name with a cool color-changing effect
+#     animate_text "$name" "figlet" "$BOLD$MAGENTA" "$BOLD$CYAN"
 
-    # Show system info with neofetch, but with custom colors and effects
-    neofetch --ascii_distro termux --colors 4 6 2 3 5 7
-}
+#     # Show system info with neofetch, but with custom colors and effects
+#     neofetch --ascii_distro termux --colors 4 6 2 3 5 7
+# }
 
 # Prompt the user for their name
 echo "Enter your name:"
 read name
-
-# Generate and display the welcome banner
-generate_welcome_banner "$name"
 
 # Remove any existing MOTD files to avoid conflicts
 rm -f /data/data/com.termux/files/usr/etc/motd
 rm -f /data/data/com.termux/files/usr/etc/motd.sh
 
 # Create a new MOTD script with the enhanced welcome message
-echo "#!/usr/bin/bash
-generate_welcome_banner \"$name\"
+echo "echo -e "${BOLD}${CYAN}"
+echo "********************************************"
+echo "  WELCOME TO TERMUX, $name! 🌟"
+echo "********************************************"
+echo -e "${RESET}"
+animate_text "$name" "figlet" "$BOLD$MAGENTA" "$BOLD$CYAN"
+neofetch --ascii_distro termux --colors 4 6 2 3 5 7
 " > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
 
 # Make sure the new MOTD script is executable
