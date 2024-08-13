@@ -26,14 +26,16 @@ cat <<EOF > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
 GREEN="\e[92m"
 ORANGE="\e[33m"
 BLUE="\e[94m"
+STOP="\e[0m"
 printf "${GREEN}"
-echo "********************************************"
+printf "********************************************\n"
 printf "${ORANGE}"
-echo "  WELCOME TO TERMUX, $name! 🌟"
+printf "  WELCOME TO TERMUX, $name! 🌟\n"
 printf "${GREEN}"
-echo "********************************************"
+printf "********************************************\n"
 printf "${BLUE}"
 figlet $name
+printf "${STOP}"
 neofetch --ascii_distro termux --colors 4 6 2 3 5 7
 EOF
 
