@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+
+
 # Update and install necessary packages
 apt update -y && apt upgrade -y
 apt install neofetch --yes
@@ -21,12 +23,17 @@ rm -f /data/data/com.termux/files/usr/etc/motd.sh
 # Create a new MOTD script with the enhanced welcome message
 cat <<EOF > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
 #!/usr/bin/bash
-echo -e "\${BOLD}\${CYAN}"
+GREEN = "\e[92m"
+ORANGE = "\e[33m"
+BLUE = "\e[94m"
+printf "${GREEN}"
 echo "********************************************"
+printf "${ORANGE}"
 echo "  WELCOME TO TERMUX, $name! 🌟"
+printf "${GREEN}"
 echo "********************************************"
-echo -e "\${RESET}"
-echo -e "\${BOLD}\${MAGENTA}\$(figlet $name)\${CYAN}"
+printf "${BLUE}"
+figlet $name
 neofetch --ascii_distro termux --colors 4 6 2 3 5 7
 EOF
 
