@@ -8,6 +8,7 @@ apt update -y && apt upgrade -y
 apt install neofetch --yes
 apt install figlet --yes
 apt install ruby --yes
+apt install ncurses-utils --yes
 gem install lolcat
 
 # Function to generate a dynamic and colorful welcome banner
