@@ -23,9 +23,9 @@ rm -f /data/data/com.termux/files/usr/etc/motd.sh
 # Create a new MOTD script with the enhanced welcome message
 cat <<EOF > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
 #!/usr/bin/bash
-GREEN = "\e[92m"
-ORANGE = "\e[33m"
-BLUE = "\e[94m"
+GREEN="\e[92m"
+ORANGE="\e[33m"
+BLUE="\e[94m"
 printf "${GREEN}"
 echo "********************************************"
 printf "${ORANGE}"
