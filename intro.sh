@@ -1,36 +1,12 @@
 #!/usr/bin/bash
 
-# Import necessary modules for colors and animations
-source /data/data/com.termux/files/usr/etc/bash_colors.sh
-source /data/data/com.termux/files/usr/etc/bash_animations.sh
-
+# Update and install necessary packages
 apt update -y && apt upgrade -y
 apt install neofetch --yes
 apt install figlet --yes
 apt install ruby --yes
 apt install ncurses-utils --yes
 gem install lolcat
-
-# Function to generate a dynamic and colorful welcome banner
-# generate_welcome_banner() {
-#     local name=$1
-
-#     # Clear the screen
-#     clear
-
-#     # Display a colorful ASCII banner with dynamic colors and animations
-#     echo -e "${BOLD}${CYAN}"
-#     echo "********************************************"
-#     echo "  WELCOME TO TERMUX, $name! 🌟"
-#     echo "********************************************"
-#     echo -e "${RESET}"
-
-#     # Animate the user's name with a cool color-changing effect
-#     animate_text "$name" "figlet" "$BOLD$MAGENTA" "$BOLD$CYAN"
-
-#     # Show system info with neofetch, but with custom colors and effects
-#     neofetch --ascii_distro termux --colors 4 6 2 3 5 7
-# }
 
 clear
 
@@ -43,19 +19,21 @@ rm -f /data/data/com.termux/files/usr/etc/motd
 rm -f /data/data/com.termux/files/usr/etc/motd.sh
 
 # Create a new MOTD script with the enhanced welcome message
-echo "echo -e "${BOLD}${CYAN}"
+cat <<EOF > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
+#!/usr/bin/bash
+echo -e "\${BOLD}\${CYAN}"
 echo "********************************************"
 echo "  WELCOME TO TERMUX, $name! 🌟"
 echo "********************************************"
-echo -e "${RESET}"
-echo -e "${BOLD}${MAGENTA}$(figlet $name)${CYAN}"
+echo -e "\${RESET}"
+echo -e "\${BOLD}\${MAGENTA}\$(figlet $name)\${CYAN}"
 neofetch --ascii_distro termux --colors 4 6 2 3 5 7
-" > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
+EOF
 
 # Make sure the new MOTD script is executable
 chmod +x /data/data/com.termux/files/usr/etc/profile.d/motd.sh
 
 # Clear the screen and notify the user to restart Termux
 clear
-echo -e "${BOLD}${GREEN}V.2.0${RESET}"
-echo -e "${BOLD}${YELLOW}Your new Termux experience is ready! Please restart Termux to see the changes. Enjoy!${RESET}"
+echo -e "\033[1;32mV.2.0\033[0m"
+echo -e "\033[1;33mYour new Termux experience is ready! Please restart Termux to see the changes. Enjoy!\033[0m"
