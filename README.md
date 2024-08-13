@@ -1,7 +1,9 @@
+![Screenshot](image.png)
+
 # termux-intro
 Changes your termux default welcome message, to a cooler one 😎
 
-## INSTALLATION
+## Installation
 
 Clone using 
 
