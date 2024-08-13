@@ -48,7 +48,7 @@ echo "********************************************"
 echo "  WELCOME TO TERMUX, $name! 🌟"
 echo "********************************************"
 echo -e "${RESET}"
-name=$name; BOLD=$(tput bold); MAGENTA=$(tput setaf 5); CYAN=$(tput setaf 6); echo -e "${BOLD}${MAGENTA}$(figlet $name)${CYAN}"
+echo "name=$name; BOLD=$(tput bold); MAGENTA=$(tput setaf 5); CYAN=$(tput setaf 6); echo -e "${BOLD}${MAGENTA}$(figlet $name)${CYAN}""
 neofetch --ascii_distro termux --colors 4 6 2 3 5 7
 " > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
 
