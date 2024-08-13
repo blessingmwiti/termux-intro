@@ -1,19 +1,46 @@
 #!/usr/bin/bash
-echo "Enter name"
-read name
-#copies the following code to motd.sh
-echo "echo "★★★★★★★★★★★★★★★★★★★★★★★★★★★★"
-echo "Welcome to Termux $name! 😈"
-echo "★★★★★★★★★★★★★★★★★★★★★★★★★★★★"
-figlet $name
-neofetch" > motd.sh
-#tries to remove motd file if any
-rm /data/data/com.termux/files/usr/etc/motd
-#trie to remove motd.sh file if any
-rm /data/data/com.termux/files/usr/etc/motd.sh
-#moves the created motd.sh file to profile.d directory
-mv motd.sh /data/data/com.termux/files/usr/etc/profile.d 
-pkg install neofetch --yes && pkg install figlet --yes
+
+# Update and install necessary packages
+apt update -y && apt upgrade -y
+apt install neofetch --yes
+apt install figlet --yes
+apt install ruby --yes
+apt install ncurses-utils --yes
+gem install lolcat
+
 clear
-echo "V.1.2"
-echo "Please restart Termux now to confirm changes. Enjoy!"
+
+# Prompt the user for their name
+echo "Enter your name:"
+read name
+
+# Remove any existing MOTD files to avoid conflicts
+rm -f /data/data/com.termux/files/usr/etc/motd
+rm -f /data/data/com.termux/files/usr/etc/motd.sh
+
+# Create a new MOTD script with the enhanced welcome message
+cat <<EOF > /data/data/com.termux/files/usr/etc/profile.d/motd.sh
+#!/usr/bin/bash
+GREEN="\\e[32m"
+ORANGE="\\e[33m"
+BLUE="\\e[34m"
+STOP="\\e[0m"
+printf "\${GREEN}"
+printf "********************************************\\n"
+printf "\${ORANGE}"
+printf "  WELCOME TO TERMUX, $name! 🌟\\n"
+printf "\${GREEN}"
+printf "********************************************\\n"
+printf "\${BLUE}"
+figlet $name
+printf "\${STOP}"
+neofetch --ascii_distro termux --colors 4 6 2 3 5 7
+EOF
+
+# Make sure the new MOTD script is executable
+chmod +x /data/data/com.termux/files/usr/etc/profile.d/motd.sh
+
+# Clear the screen and notify the user to restart Termux
+clear
+echo -e "\033[1;32mV.2.0\033[0m"
+echo -e "\033[1;33mYour new Termux experience is ready! Please restart Termux to see the changes. Enjoy!\033[0m"
