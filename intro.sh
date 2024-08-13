@@ -4,6 +4,11 @@
 source /data/data/com.termux/files/usr/etc/bash_colors.sh
 source /data/data/com.termux/files/usr/etc/bash_animations.sh
 
+apt update -y && apt upgrade -y
+apt install neofetch --yes
+apt install figlet --yes
+apt install lolcat --yes
+
 # Function to generate a dynamic and colorful welcome banner
 generate_welcome_banner() {
     local name=$1
@@ -31,12 +36,6 @@ read name
 
 # Generate and display the welcome banner
 generate_welcome_banner "$name"
-
-# Install the necessary packages for the script to work (if not already installed)
-apt update -y && apt upgrade -y
-apt install neofetch --yes
-apt install figlet --yes
-apt install lolcat --yes  # For colorful output
 
 # Remove any existing MOTD files to avoid conflicts
 rm -f /data/data/com.termux/files/usr/etc/motd
